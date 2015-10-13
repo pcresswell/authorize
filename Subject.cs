@@ -82,7 +82,7 @@ namespace Authorize
         /// 4. We are an instance and subject is an instance - same type and Identity
         /// </summary>
         /// <returns><c>true</c>, if to was appliesed, <c>false</c> otherwise.</returns>
-        /// <param name="subject">Subject.</param>
+        /// <param name="subject">The subject.</param>
         public bool AppliesTo(object subject)
         {
             // 1. We are a type
