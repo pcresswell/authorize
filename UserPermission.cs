@@ -43,10 +43,10 @@ namespace Authorize
             this.UnauthorizedActions = new List<Action>();
         }
         [JsonPropertyAttribute]
-        private IList<Action> AuthorizedActions { get; set; }
+        public IList<Action> AuthorizedActions { get; private set; }
 
         [JsonPropertyAttribute]
-        private IList<Action> UnauthorizedActions{ get; set; }
+        public IList<Action> UnauthorizedActions{ get; private set; }
 
         /// <summary>
         /// Add an action that is authorized to this user.

@@ -39,11 +39,30 @@ namespace Authorize.Test
         }
 
         [Test]
+        public void UncertainWithoutAnyIndication()
+        {
+            UserPermission user = new UserPermission();
+            bool? canCreate = user.Can(Actions.Create, typeof(AddressModel));
+            Assert.IsNull(canCreate);
+        }
+
+        [Test]
         public void TestCanCreateAnything()
         {
             UserPermission user = new UserPermission();
             user.AddAuthorization(Actions.Create);
             bool? canCreate = user.Can(Actions.Create, typeof(AddressModel));
+            Assert.IsTrue(canCreate == true);
+        }
+
+        [Test]
+        public void TestUserCanDoAnything()
+        {
+            UserPermission user = new UserPermission();
+            user.AddAuthorization(Actions.Manage);
+            bool? canCreate = user.Can(Actions.Create, typeof(AddressModel));
+            Assert.IsTrue(canCreate == true);
+            canCreate = user.Can(Actions.Delete, typeof(AddressModel));
             Assert.IsTrue(canCreate == true);
         }
 
@@ -90,14 +109,18 @@ namespace Authorize.Test
         public void CanAuthorizedAgainstAnInstance()
         {
             UserPermission user = new UserPermission();
-            Update updateAction = new Update();
             AddressModel address = new AddressModel();
-
-            updateAction.AddSubject(address);
+            Update updateAction = new Update(address);
             user.AddAuthorization(updateAction);
-            Assert.IsTrue(updateAction.AppliesTo(address));
+
             bool? canUpdate = user.Can(Actions.Update, address);
             Assert.IsTrue(canUpdate == true);
+
+            AddressModel differentAddress = new AddressModel();
+            canUpdate = user.Can(Actions.Update, differentAddress);
+            Assert.IsTrue(canUpdate == false);
+            canUpdate = user.Can(Actions.Update, typeof(AddressModel));
+            Assert.IsTrue(canUpdate == false);
         }
 
         [Test]

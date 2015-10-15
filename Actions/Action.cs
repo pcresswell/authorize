@@ -62,7 +62,7 @@ namespace Authorize
         /// </summary>
         /// <value>The subjects.</value>
         [JsonPropertyAttribute]
-        private IList<Subject> Subjects { get; set; }
+        public IList<Subject> Subjects { get; private set; }
 
         /// <summary>
         /// Determines whether this instance is type of the specified action.

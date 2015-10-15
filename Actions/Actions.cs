@@ -57,6 +57,11 @@ namespace Authorize
         public static readonly Share Share = new Share();
 
         /// <summary>
+        /// The Manage action.
+        /// </summary>
+        public static readonly Manage Manage = new Manage();
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Authorize.Actions"/> class.
         /// </summary>
         private Actions()
