@@ -30,7 +30,8 @@ using Newtonsoft.Json;
 namespace Authorize
 {
     /// <summary>
-    /// Represents a collection of authorized and unauthorized actions. Typically, an instance of this class
+    /// Represents a collection of authorized and unauthorized actions.
+    /// Typically, an instance of this class
     /// would handle a single user's authorizations.
     /// </summary>
     [JsonObjectAttribute]
@@ -47,6 +48,10 @@ namespace Authorize
         [JsonPropertyAttribute]
         private IList<Action> UnauthorizedActions{ get; set; }
 
+        /// <summary>
+        /// Add an action that is authorized to this user.
+        /// </summary>
+        /// <param name="action">Action.</param>
         public void AddAuthorization(Action action)
         {
             if (this.AuthorizedActions.Contains(action))
@@ -57,6 +62,10 @@ namespace Authorize
             this.AuthorizedActions.Add(action);
         }
 
+        /// <summary>
+        /// Remove an authorized action.
+        /// </summary>
+        /// <param name="action">Action.</param>
         public void RemoveAuthorization(Action action)
         {
             if (!this.AuthorizedActions.Contains(action))
@@ -67,6 +76,11 @@ namespace Authorize
             this.AuthorizedActions.Remove(action);
         }
 
+        /// <summary>
+        /// Add an action that is NOT authorized. Add an action that
+        /// is not authorized.
+        /// </summary>
+        /// <param name="action">Action.</param>
         public void AddUnauthorization(Action action)
         {
             if (this.UnauthorizedActions.Contains(action))
@@ -77,6 +91,10 @@ namespace Authorize
             this.UnauthorizedActions.Add(action);
         }
 
+        /// <summary>
+        /// Remove an action that is not authorized.
+        /// </summary>
+        /// <param name="action">Action.</param>
         public void RemoveUnauthorization(Action action)
         {
             if (!this.UnauthorizedActions.Contains(action))
@@ -87,6 +105,17 @@ namespace Authorize
             this.UnauthorizedActions.Remove(action);
         }
 
+        /// <summary>
+        /// Determines whether this instance can perform the given action against the given subject.
+        /// First all unauthorized actions are checked to ensure that we are not unauthorized to perform
+        /// the type action requested action against the given subject. After that, we check if we are authorized
+        /// to perform the type of action against the given subject.
+        /// </summary>
+        /// <returns><c>true</c> if we are authorized to perform the type of action against the subject.
+        /// <c>false</c> if we are not authorized to perform the type of action against the subject.
+        /// <c>null</c>if we are netheir authorized NOR unauthorized.</returns>
+        /// <param name="action">Action. Used to check the type.</param>
+        /// <param name="subject">Subject.</param>
         public bool? Can(Action action, object subject)
         {
             // Check for unauthorized actions that apply to this subject.
