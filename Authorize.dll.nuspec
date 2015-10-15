@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Authorize.dll</id>
+    <version>0.1.1</version>
+    <authors>Peter Cresswell</authors>
+    <owners>Peter Cresswell</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>General purpose authorization library</description>
+    <releaseNotes>Initial alpha release.</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>Authorization</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="7.0" />
+    </dependencies>
+  </metadata>
+</package>

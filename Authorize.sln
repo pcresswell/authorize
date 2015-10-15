@@ -184,5 +184,6 @@ Global
 		$27.DirectoryNamespaceAssociation = None
 		$27.ResourceNamePolicy = FileFormatDefault
 		description = Authorization library that allows you to allow or deny actions against classes and instances of classes.
+		version = 0.1.1
 	EndGlobalSection
 EndGlobal
