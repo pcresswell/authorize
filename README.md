@@ -65,7 +65,7 @@ Assert.IsTrue(canUpdate == false);
 ```
 
 ## Other details
-As you would expect, unauthorized actions dominate over unauthorized. The permissions can be serialized to a database.
+As you would expect, unauthorized actions dominate over authorized. The permissions can be serialized to a database.
 ```
 UserPermission user = new UserPermission();
 Create createAction = new Create(typeof(AddressModel));
